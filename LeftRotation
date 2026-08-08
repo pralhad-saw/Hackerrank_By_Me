@@ -18,11 +18,7 @@ import sys
 def rotateLeft(d, arr):
     # Write your code here
     
-    for _ in range (0,d):
-        element = arr.pop(0)
-        arr.append(element)
-    return arr
-
+ 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
