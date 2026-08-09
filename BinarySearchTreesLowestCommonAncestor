@@ -55,7 +55,8 @@ def lca(root, v1, v2):
         root = root.right
     elif v1< root.info and v2 <root.info:
         root = root.left
-
+    else:
+        return root
 
 tree = BinarySearchTree()
 t = int(input())
