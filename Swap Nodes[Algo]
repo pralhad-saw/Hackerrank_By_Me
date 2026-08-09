@@ -60,6 +60,16 @@ def swapNodes(indexes, queries):
         in_order(right, result)
 
 
+    # Step 4: Process each query sequentially
+    result_list = []
+    for k in queries:
+        swap(1, k)
+        current_inorder = []
+        in_order(1, current_inorder)
+        return result_list.append(current_inorder)
+
+ 
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
