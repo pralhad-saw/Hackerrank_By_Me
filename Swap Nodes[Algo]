@@ -22,6 +22,20 @@ def swapNodes(indexes, queries):
     depths = {1: 1}  
     queue = [1]
 
+   
+    while queue:
+        curr = queue.pop(0)
+        curr_depth = depths[curr]
+        left, right = indexes[curr - 1]
+        
+        if left != -1:
+            depths[left] = curr_depth + 1
+            queue.append(left)
+        if right != -1:
+            depths[right] = curr_depth + 1
+            queue.append(right)
+
+
 
 
 if __name__ == '__main__':
