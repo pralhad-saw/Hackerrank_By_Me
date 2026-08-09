@@ -18,7 +18,25 @@ import sys
 
 def arrayManipulation(n, queries):
     # Write your code here
-
+    num = [0] * (n + 2)
+        
+    for query in queries:
+        a= query[0]
+        b= query[1] 
+        k=query[2]
+        
+        
+        num[a] += k
+        num[b+1] -=k
+    max = 0
+    curr = 0
+    
+    for val in num[1:n + 1]:
+        curr += val
+        if curr > max:
+            max = curr
+            
+    return max
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
