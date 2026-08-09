@@ -35,6 +35,20 @@ def swapNodes(indexes, queries):
             depths[right] = curr_depth + 1
             queue.append(right)
 
+   # Step 2: Helper function for swapping subtrees
+    def swap(node, k):
+        if node == -1:
+            return
+        
+        # If current node's depth is a multiple of k, swap its children
+        if depths[node] % k == 0:
+            left, right = indexes[node - 1]
+            indexes[node - 1] = [right, left]
+            
+        # Recurse down left and right subtrees
+        left, right = indexes[node - 1]
+        swap(left, k)
+        swap(right, k)
 
 
 
