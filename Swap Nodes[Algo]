@@ -17,6 +17,10 @@ import sys
 #
 
 
+sys.setrecursionlimit(2000)
+
+
+
 def swapNodes(indexes, queries):
     # Step 1: Calculate depths using BFS
     depths = {1: 1}  
