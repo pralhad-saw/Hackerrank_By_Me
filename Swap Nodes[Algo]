@@ -66,9 +66,9 @@ def swapNodes(indexes, queries):
         swap(1, k)
         current_inorder = []
         in_order(1, current_inorder)
-        return result_list.append(current_inorder)
+        result_list.append(current_inorder)
 
- 
+    return result_list
 
 
 if __name__ == '__main__':
