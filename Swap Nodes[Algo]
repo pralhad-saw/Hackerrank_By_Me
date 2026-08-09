@@ -50,6 +50,15 @@ def swapNodes(indexes, queries):
         swap(left, k)
         swap(right, k)
 
+    # Step 3: Helper function for In-Order traversal
+    def in_order(node, result):
+        if node == -1:
+            return
+        left, right = indexes[node - 1]
+        in_order(left, result)
+        result.append(node)
+        in_order(right, result)
+
 
 
 if __name__ == '__main__':
