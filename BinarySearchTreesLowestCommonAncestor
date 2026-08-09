@@ -50,6 +50,9 @@ class Node:
 def lca(root, v1, v2):
   #Enter your code here
 
+  while root:
+
+
 tree = BinarySearchTree()
 t = int(input())
 
