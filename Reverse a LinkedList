@@ -54,7 +54,21 @@ def print_singly_linked_list(node, sep, fptr):
 #
 
 def reverse(llist):
- 
+    prev = None
+    current = llist
+    
+    while current is not None:
+
+        next_node = current.next
+        
+
+        current.next = prev
+        
+
+        prev = current
+        current = next_node
+        
+    return prev
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
