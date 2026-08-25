@@ -1,0 +1,98 @@
+'use strict';
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', function(inputStdin) {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+/*
+ * Complete the 'matrixRotation' function below.
+ *
+ * The function accepts following parameters:
+ *  1. 2D_INTEGER_ARRAY matrix
+ *  2. INTEGER r
+ */
+
+function matrixRotation(matrix, r) {
+    const rows = matrix.length;
+    const cols = matrix[0].length;
+    
+    // Determine the total number of concentric rings
+    const numRings = Math.min(rows, cols) / 2;
+    
+    for (let k = 0; k < numRings; k++) {
+        const coords = [];
+        
+        // 1. Gather coordinates counter-clockwise for ring 'k'
+        // Top boundary (Left to Right)
+        for (let j = k; j < cols - k; j++) {
+            coords.push([k, j]);
+        }
+        // Right boundary (Top to Bottom) - skip corner
+        for (let i = k + 1; i < rows - k; i++) {
+            coords.push([i, cols - 1 - k]);
+        }
+        // Bottom boundary (Right to Left) - skip corner
+        for (let j = cols - 2 - k; j >= k; j--) {
+            coords.push([rows - 1 - k, j]);
+        }
+        // Left boundary (Bottom to Top) - skip top and bottom corners
+        for (let i = rows - 2 - k; i > k; i--) {
+            coords.push([i, k]);
+        }
+        
+        // 2. Extract values using the coordinates
+        const values = coords.map(([r, c]) => matrix[r][c]);
+        
+        // 3. Optimize rotation using Modulo
+        const len = values.length;
+        const shift = r % len;
+        
+        // Create the newly rotated array slice
+        const rotatedValues = [...values.slice(shift), ...values.slice(0, shift)];
+        
+        // 4. Write back the rotated values into the original matrix
+        for (let idx = 0; idx < coords.length; idx++) {
+            const [r, c] = coords[idx];
+            matrix[r][c] = rotatedValues[idx];
+        }
+    }
+    
+    // 5. Print output in HackerRank format
+    for (let i = 0; i < rows; i++) {
+        console.log(matrix[i].join(' '));
+    }
+}
+
+function main() {
+    const firstMultipleInput = readLine().replace(/\s+$/g, '').split(' ');
+
+    const m = parseInt(firstMultipleInput[0], 10);
+
+    const n = parseInt(firstMultipleInput[1], 10);
+
+    const r = parseInt(firstMultipleInput[2], 10);
+
+    let matrix = Array(m);
+
+    for (let i = 0; i < m; i++) {
+        matrix[i] = readLine().replace(/\s+$/g, '').split(' ').map(matrixTemp => parseInt(matrixTemp, 10));
+    }
+
+    matrixRotation(matrix, r);
+}
