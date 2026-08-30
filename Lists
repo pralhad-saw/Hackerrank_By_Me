@@ -1,0 +1,21 @@
+if __name__ == '__main__':
+    N = int(input())
+    commands = []
+    list=[]
+    for x in range (N):
+        commands.append(input())
+    for command in commands:
+        if command == "print":
+            print(list)
+        elif command == "sort":
+            list.sort()
+        elif command == "pop":
+            list.pop()
+        elif command == "reverse":
+            list.reverse()
+        elif "remove" in command:
+            list.remove(int(command[7:]))
+        elif "append" in command:
+            list.append(int(command[7:]))
+        else:
+            list.insert(int(command[7]), int(command[9:]))
